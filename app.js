@@ -482,7 +482,7 @@
         if (tooltipEl) {
           tooltipEl.textContent = hovered 
             ? `Узел: ${hovered.label} · Связей: ${hovered.links.length}`
-            : "Нажмите и перетаскивайте узлы для анализа связей AST";
+            : "Нажмите и перетаскивайте узлы для анализа графа связей";
         }
       }
     });
@@ -691,7 +691,7 @@
         } else {
           responseHTML = `
             <em>Команда <code>${escapeHTML(rawCommand)}</code> принята как пользовательский запрос.</em><br>
-            Демон Hermes обработал запрос с кодом возврата <code>0</code>. Введите <code>/help</code> для списка команд телеметрии.
+            Симулятор Hermes обработал запрос с кодом возврата <code>0</code>. Введите <code>/help</code> для списка доступных команд.
           `;
         }
 
