@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Избранные проекты и системы — Портфолио</title>
+  <meta name="description" content="Персональное портфолио: генеративный дизайн, экспериментальная веб-архитектура, интерактивные системы и автономные Telegram-боты.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Google Fonts: Editorial Serif, Modern Grotesk, Technical Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Custom Subtle Cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Global Header / Top Editorial Bar -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <div class="header-brand">
+        <a href="#hero" class="brand-monogram" aria-label="На главную">
+          <span class="mono-symbol">✦</span>
+          <span class="brand-title">INDEX // 2026</span>
+        </a>
+        <span class="brand-meta hidden-mobile">ЦИФРОВАЯ АРХИТЕКТУРА И ДИЗАЙН</span>
+      </div>
+
+      <div class="header-status hidden-tablet">
+        <span class="status-pulse"></span>
+        <span class="status-text">ОТКРЫТ ДЛЯ ИЗБРАННЫХ ПРОЕКТОВ</span>
+      </div>
+
+      <div class="header-actions">
+        <div class="header-clock hidden-mobile">
+          <span class="clock-label">UTC</span>
+          <span id="liveClock" class="clock-digits">00:00:00</span>
+        </div>
+
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a href="#projects" class="nav-link"><span class="nav-num">01</span> Проекты</a>
+          <a href="#disciplines" class="nav-link"><span class="nav-num">02</span> Компетенции</a>
+          <a href="#colophon" class="nav-link"><span class="nav-num">03</span> Контакты</a>
+        </nav>
+
+        <button id="themeToggle" class="theme-toggle" aria-label="Переключить тему оформления" title="Переключение темы: светлая / тёмная">
+          <span class="theme-icon light-icon" aria-hidden="true">☼</span>
+          <span class="theme-icon dark-icon" aria-hidden="true">☾</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        
+        <!-- Hero Meta Header -->
+        <div class="hero-metadata">
+          <div class="meta-tag">
+            <span class="meta-key">НАПРАВЛЕНИЕ</span>
+            <span class="meta-val">ВЫЧИСЛИТЕЛЬНЫЙ ДИЗАЙН И СИСТЕМЫ</span>
+          </div>
+          <div class="meta-tag hidden-mobile">
+            <span class="meta-key">ИЗДАНИЕ</span>
+            <span class="meta-val">ВЫПУСК № 04 / 2026</span>
+          </div>
+          <div class="meta-tag hidden-mobile">
+            <span class="meta-key">ПРИНЦИП</span>
+            <span class="meta-val">ТОЧНОСТЬ ВМЕСТО ШУМА</span>
+          </div>
+        </div>
+
+        <!-- Hero Primary Typography -->
+        <div class="hero-editorial">
+          <h1 class="hero-headline">
+            <span class="line line-1">Форма, продиктованная логикой.</span>
+            <span class="line line-2">
+              <span class="italic-accent">Интерфейсы</span>, выверенные для ясности.
+            </span>
+          </h1>
+          <p class="hero-lead">
+            Независимая практика на стыке алгоритмического мастерства, 
+            осязаемого взаимодействия и надёжной системной архитектуры.
+          </p>
+        </div>
+
+        <!-- HERO INTERACTIVE VISUAL ELEMENT -->
+        <div class="hero-visual-card">
+          <div class="visual-card-header">
+            <div class="visual-indicator">
+              <span class="indicator-dot"></span>
+              <span class="visual-title">ПАРАМЕТРИЧЕСКАЯ ТОПОГРАФИЯ // ДИНАМИКА ПОЛЯ</span>
+            </div>
+            
+            <div class="visual-controls">
+              <span class="ctrl-label">РЕЖИМ:</span>
+              <button class="mode-btn active" data-mode="harmonic">Гармоника</button>
+              <button class="mode-btn" data-mode="vortex">Вихрь</button>
+              <button class="mode-btn" data-mode="topography">Топология</button>
+            </div>
+          </div>
+
+          <!-- Generative Canvas -->
+          <div class="canvas-wrapper">
+            <canvas id="heroCanvas" width="1200" height="480" aria-label="Интерактивная визуализация генеративного волнового поля"></canvas>
+            <div class="canvas-overlay-hint">
+              <span>[ НАВЕДИТЕ КУРСОР ДЛЯ ВОЗМУЩЕНИЯ ПОЛЯ ]</span>
+            </div>
+          </div>
+
+          <div class="visual-card-footer">
+            <div class="metric-item">
+              <span class="metric-label">ЧАСТОТА КАДРОВ</span>
+              <span class="metric-value" id="fpsDisplay">60 FPS</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">ВЕРШИНЫ</span>
+              <span class="metric-value">1 440 УЗЛОВ</span>
+            </div>
+            <div class="metric-item hidden-mobile">
+              <span class="metric-label">ЗАТУХАНИЕ</span>
+              <span class="metric-value" id="tensionDisplay">0.48 ДЕМПФИРОВАНИЕ</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">АЛГОРИТМ</span>
+              <span class="metric-value">ЭЙЛЕР — ВЕРЛЕ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Sub-Grid Metrics & Ethos -->
+        <div class="hero-footer-grid">
+          <div class="grid-block">
+            <span class="block-num">01</span>
+            <h3 class="block-title">Выразительный типографический ритм</h3>
+            <p class="block-text">
+              Шрифт — не просто контейнер для информации, а форма архитектуры. Каждая базовая линия, масштабный коэффициент и оптический баланс выверены до пикселя.
+            </p>
+          </div>
+          <div class="grid-block">
+            <span class="block-num">02</span>
+            <h3 class="block-title">Высокопроизводительная инженерия</h3>
+            <p class="block-text">
+              Потоки данных без задержек, детерминированные контейнеры состояния и отказоустойчивая автоматизация, рассчитанная на непрерывную работу.
+            </p>
+          </div>
+          <div class="grid-block">
+            <span class="block-num">03</span>
+            <h3 class="block-title">Осязаемые цифровые объекты</h3>
+            <p class="block-text">
+              Восприятие экрана как физической поверхности с кинетическим импульсом, физикой пружин и естественным откликом на действия пользователя.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SELECTED PROJECTS SECTION -->
+    <section class="projects-section" id="projects">
+      <div class="section-container">
+        
+        <!-- Section Header with View Mode Switcher -->
+        <div class="section-topbar">
+          <div class="section-heading-wrap">
+            <span class="section-tag">[ 01 / ИЗБРАННЫЕ ПРОЕКТЫ ]</span>
+            <h2 class="section-title">Кейсы и прототипы</h2>
+          </div>
+
+          <div class="view-switcher" role="radiogroup" aria-label="Формат отображения проектов">
+            <button class="view-btn active" data-view="curated" id="btnCuratedView" role="radio" aria-checked="true">
+              <span class="btn-bullet"></span> Кураторский обзор
+            </button>
+            <button class="view-btn" data-view="technical" id="btnTechnicalView" role="radio" aria-checked="false">
+              <span class="btn-bullet"></span> Технические спецификации
+            </button>
+          </div>
+        </div>
+
+        <!-- UNCONVENTIONAL ASYMMETRIC PROJECT LAYOUT -->
+        <div class="projects-layout" id="projectsContainer">
+          
+          <!-- PROJECT 01: Experimental Website -->
+          <article class="project-card project-experimental" data-index="01" id="project-01">
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge badge-accent">ПРОЕКТ 01</span>
+                <span class="badge">ЭКСПЕРИМЕНТАЛЬНЫЙ САЙТ</span>
+                <span class="badge badge-mono">WEBGL / CANVAS2D</span>
+              </div>
+              <span class="project-year">2026</span>
+            </div>
+
+            <div class="project-split-body">
+              <div class="project-info-column">
+                <h3 class="project-name">AURA // Кинетическая типографика и хронотопология</h3>
+                
+                <p class="project-summary">
+                  Вычислительный веб-эксперимент, исследующий реактивную типографику, неевклидовы искажения сетки 
+                  и волновую физику в реальном времени. Интерфейс преобразует скорость курсора и звуковые частоты в 
+                  пространственные деформации контуров вариативных глифов.
+                </p>
+
+                <!-- Technical Specs View (Visible in Spec Mode or expanded) -->
+                <div class="project-specs-list">
+                  <div class="spec-row">
+                    <span class="spec-name">Базовый стек</span>
+                    <span class="spec-val">Vanilla JavaScript, собственный векторный движок, Web Audio API</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Кинематика</span>
+                    <span class="spec-val">Интегрирование Эйлера — Верле, сплайны Эрмита</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Производительность</span>
+                    <span class="spec-val">Стабильные 60 FPS на мобильных GPU, размер &lt; 28 КБ без бандлера</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Ключевая особенность</span>
+                    <span class="spec-val">Динамическое возмущение глифов и затухание частот в реальном времени</span>
+                  </div>
+                </div>
+
+                <div class="project-tags">
+                  <span class="tag">Процедурная типографика</span>
+                  <span class="tag">Волновая кинематика</span>
+                  <span class="tag">Микровзаимодействия</span>
+                  <span class="tag">WebGL Canvas</span>
+                </div>
+              </div>
+
+              <!-- Interactive Live Preview Widget: AURA Kinematics Simulator -->
+              <div class="project-widget-column">
+                <div class="interactive-preview-box">
+                  <div class="preview-header">
+                    <span class="preview-label">ЖИВОЙ ЭКСПЕРИМЕНТ // ИНТЕРАКТИВНЫЙ СТЕНД</span>
+                    <span class="preview-state">ГОТОВО</span>
+                  </div>
+
+                  <div class="preview-canvas-holder">
+                    <canvas id="auraCanvas" width="600" height="300" aria-label="Симуляция кинетического полотна Aura"></canvas>
+                    <div class="aura-center-watermark" aria-hidden="true">AURA</div>
+                  </div>
+
+                  <div class="preview-controls">
+                    <div class="ctrl-group">
+                      <label for="auraFreq">ЧАСТОТА <span id="freqVal" class="ctrl-display">1.6 Гц</span></label>
+                      <input type="range" id="auraFreq" min="0.4" max="4.0" step="0.1" value="1.6" class="range-slider">
+                    </div>
+                    <div class="ctrl-group">
+                      <label for="auraTension">УПРУГОСТЬ <span id="tensionVal" class="ctrl-display">0.75</span></label>
+                      <input type="range" id="auraTension" min="0.1" max="1.0" step="0.05" value="0.75" class="range-slider">
+                    </div>
+                    <button id="auraImpulseBtn" class="pill-action-btn">
+                      <span>⚡ ИМПУЛЬС</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- PROJECT 02: Useful Web Application -->
+          <article class="project-card project-webapp" data-index="02" id="project-02">
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge badge-accent">ПРОЕКТ 02</span>
+                <span class="badge">ПРИКЛАДНОЕ ВЕБ-ПРИЛОЖЕНИЕ</span>
+                <span class="badge badge-mono">LOCAL-FIRST / AST-ДВИЖОК</span>
+              </div>
+              <span class="project-year">2025–2026</span>
+            </div>
+
+            <div class="project-split-body">
+              <div class="project-info-column">
+                <h3 class="project-name">PRISM // Локальное рабочее пространство и двунаправленный граф</h3>
+                
+                <p class="project-summary">
+                  Персональная база знаний с управлением от клавиатуры, созданная для исследователей и разработчиков. 
+                  Работает полностью на стороне клиента с офлайн-хранилищем IndexedDB, парсингом AST-дерева Markdown в реальном времени 
+                  и двунаправленным графом связей на скорости 60 кадров в секунду.
+                </p>
+
+                <div class="project-specs-list">
+                  <div class="spec-row">
+                    <span class="spec-name">Архитектура</span>
+                    <span class="spec-val">Offline-first, синхронизация CRDT, токенизатор на WebAssembly</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Графовый движок</span>
+                    <span class="spec-val">Алгоритм Барнса — Хата с силовой симуляцией на OffscreenCanvas</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Скорость индексации</span>
+                    <span class="spec-val">10 000 заметок Markdown менее чем за 42 мс</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Приватность данных</span>
+                    <span class="spec-val">Без трекинга, без привязки к облаку, экспорт в чистый текст</span>
+                  </div>
+                </div>
+
+                <div class="project-tags">
+                  <span class="tag">Граф знаний</span>
+                  <span class="tag">AST-парсинг</span>
+                  <span class="tag">Local-First</span>
+                  <span class="tag">Управление с клавиатуры</span>
+                </div>
+              </div>
+
+              <!-- Interactive Live Preview Widget: PRISM Interactive Graph Node Simulator -->
+              <div class="project-widget-column">
+                <div class="interactive-preview-box prism-preview">
+                  <div class="preview-header">
+                    <span class="preview-label">ИНТЕРАКТИВНЫЙ ГРАФ // УЗЛЫ AST В РЕАЛЬНОМ ВРЕМЕНИ</span>
+                    <span class="preview-state" id="prismStatus">ИНДЕКСИРОВАНО</span>
+                  </div>
+
+                  <div class="prism-canvas-holder">
+                    <canvas id="prismCanvas" width="600" height="240" aria-label="Интерактивная визуализация узлов графа"></canvas>
+                    <div class="prism-tooltip" id="prismTooltip">Нажмите на узел, чтобы изучить его связи</div>
+                  </div>
+
+                  <div class="prism-telemetry-bar">
+                    <div class="telemetry-item">
+                      <span class="tel-label">АКТИВНЫЙ УЗЕЛ:</span>
+                      <span class="tel-value" id="prismActiveNode">Синтаксический AST</span>
+                    </div>
+                    <div class="telemetry-item">
+                      <span class="tel-label">СВЯЗИ:</span>
+                      <span class="tel-value" id="prismEdgeCount">14 СВЯЗЕЙ</span>
+                    </div>
+                    <div class="telemetry-item">
+                      <span class="tel-label">ЗАДЕРЖКА:</span>
+                      <span class="tel-value mono-green">0.42 мс</span>
+                    </div>
+                    <button id="prismBenchmarkBtn" class="pill-action-btn">
+                      <span>▶ ТЕСТ ПРОИЗВОДИТЕЛЬНОСТИ</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- PROJECT 03: Telegram Bot -->
+          <article class="project-card project-bot" data-index="03" id="project-03">
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge badge-accent">ПРОЕКТ 03</span>
+                <span class="badge">TELEGRAM-БОТ</span>
+                <span class="badge badge-mono">ИНФРАСТРУКТУРНЫЙ ДЕМОН</span>
+              </div>
+              <span class="project-year">2026</span>
+            </div>
+
+            <div class="project-split-body">
+              <div class="project-info-column">
+                <h3 class="project-name">HERMES // Автономный телеметрический бот инфраструктуры</h3>
+                
+                <p class="project-summary">
+                  Событийно-ориентированный демон Telegram, отслеживающий бессерверные edge-кластеры, 
+                  агрегирующий аномалии и ошибки по регионам и предоставляющий команды диагностики с богатым 
+                  инлайн-меню и мгновенной зашифрованной эскалацией инцидентов.
+                </p>
+
+                <div class="project-specs-list">
+                  <div class="spec-row">
+                    <span class="spec-name">Протокол</span>
+                    <span class="spec-val">Telegram Bot API v7.4 + проверка подписи вебхуков</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Диспетчер</span>
+                    <span class="spec-val">Асинхронный Python, потоки Redis, Prometheus</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Время отклика</span>
+                    <span class="spec-val">&lt; 85 мс на полную обработку команды</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-name">Надёжность</span>
+                    <span class="spec-val">99.98% аптайм кластера с автоматическим отказоустойчивым переключением</span>
+                  </div>
+                </div>
+
+                <div class="project-tags">
+                  <span class="tag">Bot API</span>
+                  <span class="tag">DevOps-автоматизация</span>
+                  <span class="tag">Телеметрия</span>
+                  <span class="tag">Асинхронные демоны</span>
+                </div>
+              </div>
+
+              <!-- Interactive Live Preview Widget: Working Telegram Conversation Simulator -->
+              <div class="project-widget-column">
+                <div class="interactive-preview-box bot-preview">
+                  <div class="telegram-chrome">
+                    <div class="tg-header">
+                      <div class="tg-avatar">H</div>
+                      <div class="tg-info">
+                        <span class="tg-name">Телеметрический демон Hermes</span>
+                        <span class="tg-status">бот · непрерывный опрос</span>
+                      </div>
+                      <div class="tg-indicator">
+                        <span class="tg-ping">ПИНГ 18 мс</span>
+                      </div>
+                    </div>
+
+                    <!-- Live Message Thread -->
+                    <div class="tg-chat-history" id="tgChatHistory" role="log" aria-live="polite">
+                      <div class="tg-msg tg-incoming">
+                        <div class="tg-bubble">
+                          <p class="tg-text">⚡ <strong>Кластер Hermes v2.4 инициализирован.</strong> Все edge-регионы работают с номинальной задержкой. Используйте команды ниже для запроса диагностики.</p>
+                          <span class="tg-time">15:23</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Command Buttons & Input Bar -->
+                    <div class="tg-actions-wrap">
+                      <div class="tg-quick-commands">
+                        <button class="tg-cmd-btn" data-cmd="/status">/status</button>
+                        <button class="tg-cmd-btn" data-cmd="/metrics">/metrics</button>
+                        <button class="tg-cmd-btn" data-cmd="/anomalies">/anomalies</button>
+                        <button class="tg-cmd-btn" data-cmd="/deploy">/deploy</button>
+                      </div>
+                      
+                      <div class="tg-input-bar">
+                        <input type="text" id="tgInput" placeholder="Введите команду (например, /status, /ping)..." aria-label="Ввод команд Telegram">
+                        <button id="tgSendBtn" class="tg-send-btn" aria-label="Отправить сообщение">↵</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCIPLINES & CRAFT SECTION -->
+    <section class="disciplines-section" id="disciplines">
+      <div class="section-container">
+        <div class="section-topbar">
+          <div class="section-heading-wrap">
+            <span class="section-tag">[ 02 / НАПРАВЛЕНИЯ И МЕТОДОЛОГИЯ ]</span>
+            <h2 class="section-title">Подход и компетенции</h2>
+          </div>
+        </div>
+
+        <div class="disciplines-grid">
+          <div class="discipline-card">
+            <span class="disc-num">01</span>
+            <h3 class="disc-title">Инженерия интерфейсов</h3>
+            <p class="disc-desc">
+              Создание интуитивных и высокопроизводительных веб-приложений с упором на осязаемый отклик, 
+              удобную клавиатурную навигацию и взаимодействие с околонулевой задержкой.
+            </p>
+            <ul class="disc-points">
+              <li>Виртуализация DOM и рендеринг с контролем памяти</li>
+              <li>Доступность по стандарту WCAG AAA и семантическая разметка</li>
+              <li>Микроанимации с естественным физическим демпфированием</li>
+            </ul>
+          </div>
+
+          <div class="discipline-card">
+            <span class="disc-num">02</span>
+            <h3 class="disc-title">Вычислительная эстетика</h3>
+            <p class="disc-desc">
+              Использование математики, векторных полей и генеративных алгоритмов для создания 
+              визуальных систем, обладающих живым откликом и строгой гармонией.
+            </p>
+            <ul class="disc-points">
+              <li>Процедурная геометрия и реактивные шейдеры на Canvas</li>
+              <li>Динамическая параметрическая типографика и кинематика сеток</li>
+              <li>Пространственные графы на основе данных и интерактивные топологии</li>
+            </ul>
+          </div>
+
+          <div class="discipline-card">
+            <span class="disc-num">03</span>
+            <h3 class="disc-title">Автономные демоны и боты</h3>
+            <p class="disc-desc">
+              Проектирование диалоговых сценариев и конвейеров автоматизации, преобразующих 
+              сложную бэкенд-телеметрию в удобный интерфейс мессенджера.
+            </p>
+            <ul class="disc-points">
+              <li>Событийно-ориентированная архитектура и надёжная логика повторов</li>
+              <li>Конечные автоматы на Telegram API и кастомные callback-сценарии</li>
+              <li>Сбор телеметрии в реальном времени и конвейеры оповещений</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Capability Matrix / Technical Palette -->
+        <div class="toolkit-panel">
+          <div class="toolkit-header">
+            <span class="toolkit-title">ТЕХНИЧЕСКИЙ СТЕК И СТАНДАРТЫ</span>
+            <span class="toolkit-subtitle">БЕЗ ЛИШНИХ ЗАВИСИМОСТЕЙ // ЧИСТЫЕ ВОЗМОЖНОСТИ</span>
+          </div>
+          <div class="toolkit-tags-container">
+            <span class="tool-tag">Стандарт HTML5</span>
+            <span class="tool-tag">Современный CSS / Grid / Clamp</span>
+            <span class="tool-tag">JavaScript ES2026+</span>
+            <span class="tool-tag">Canvas 2D / WebGL</span>
+            <span class="tool-tag">Web Audio API</span>
+            <span class="tool-tag">Telegram Bot API</span>
+            <span class="tool-tag">Python Asyncio</span>
+            <span class="tool-tag">Redis Streams</span>
+            <span class="tool-tag">IndexedDB / Local-First</span>
+            <span class="tool-tag">REST / Webhooks / SSE</span>
+            <span class="tool-tag">Адаптивная вёрстка</span>
+            <span class="tool-tag">Математическая кинематика</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COLOPHON & INQUIRY SECTION -->
+    <section class="colophon-section" id="colophon">
+      <div class="section-container">
+        <div class="colophon-content-box">
+          <div class="colophon-left">
+            <span class="section-tag">[ 03 / ПРЯМАЯ СВЯЗЬ ]</span>
+            <h2 class="colophon-title">
+              Создадим нечто запоминающееся.
+            </h2>
+            <p class="colophon-lead">
+              Открыт для интересных архитектурных проектов, экспериментальных прототипов 
+              и технического консультирования на 2026 год.
+            </p>
+            
+            <div class="inquiry-action-row">
+              <button id="copyEmailBtn" class="primary-inquiry-btn">
+                <span class="btn-text">СКОПИРОВАТЬ АДРЕС ДЛЯ СВЯЗИ</span>
+                <span class="btn-address">contact@domain.dev</span>
+                <span class="btn-badge" id="copyBadge">НАЖМИТЕ, ЧТОБЫ СКОПИРОВАТЬ</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="colophon-right">
+            <div class="spec-block">
+              <h4 class="spec-header">ТИПОГРАФИКА</h4>
+              <p class="spec-detail">
+                Набор выполнен шрифтами <em>Instrument Serif</em> (заголовки), <em>Plus Jakarta Sans</em> (основной текст) и моноширинным <em>JetBrains Mono</em> (телеметрия и код).
+              </p>
+            </div>
+
+            <div class="spec-block">
+              <h4 class="spec-header">АРХИТЕКТУРА</h4>
+              <p class="spec-detail">
+                Ноль внешних зависимостей. Чистая семантическая вёрстка, модульный нативный JavaScript и строгая CSS-архитектура. Сборка не требуется.
+              </p>
+            </div>
+
+            <div class="spec-block">
+              <h4 class="spec-header">КАНАЛЫ СВЯЗИ</h4>
+              <div class="channel-links">
+                <a href="#hero" class="channel-link">В начало страницы ↑</a>
+                <a href="#projects" class="channel-link">Каталог проектов</a>
+                <a href="https://t.me" target="_blank" rel="noopener noreferrer" class="channel-link">Канал в Telegram ↗</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="channel-link">Исходный код на GitHub ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="colophon-bottom-bar">
+          <div class="copyright-text">
+            © 2026 · ВСЕ ПРАВА ЗАЩИЩЕНЫ · ВСЕ СИСТЕМЫ В НОРМЕ
+          </div>
+          <div class="security-stamp">
+            ЦЕЛОСТНОСТЬ SHA-256 ПОДТВЕРЖДЕНА · УЗЕЛ 04
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
